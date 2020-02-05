@@ -1,22 +1,22 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import os
-import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 from PyQRNative import *
 from verhoeff import *
 
-# retrieving QR codes from 100-999 with verhoeff check digit appended.
 codesDir = 'codes'
 if not os.path.isdir(codesDir):
     os.makedirs(codesDir)
 
-codeFont = ImageFont.truetype("/usr/share/fonts/truetype/ubuntu-font-family/Ubuntu-B.ttf", 60)
+codeFont = ImageFont.truetype("Ubuntu-B.ttf", 80)
 
-bkImg = Image.open("k3-klub-kartya.png")
+bkImg = Image.open("kutyasuli-tagkartya.png")
 
-for i in range(100,399):
+# retrieving QR codes from range with verhoeff check digit appended.
+for i in range(2200,3000):
     code = str(i)+calc_check_digit(i)
-    print "Generating QR code: "+code
+    print("Generating QR code: "+code)
     qr = QRCode(2, QRErrorCorrectLevel.H)
     qr.addData(code)
     qr.make()
@@ -26,7 +26,5 @@ for i in range(100,399):
     img = bkImg.copy()
     img.paste(qrImg, (87,253))
     draw = ImageDraw.Draw(img)
-    draw.text((600,380), code, fill='#02508d', font=codeFont)
-    img.save(codesDir+'/k3-klub-kartya-'+code+'.png')
-
-
+    draw.text((496,370), code, fill='#02508d', font=codeFont)
+    img.save(codesDir+'/kutyasuli-tagkartya-'+code+'.png')

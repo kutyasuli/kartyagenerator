@@ -931,7 +931,7 @@ class QRRSBlock:
 
         list = []
 
-        for i in range(length):
+        for i in range(int(length)):
 
             count = rsBlock[i * 3 + 0]
             totalCount = rsBlock[i * 3 + 1]
@@ -964,7 +964,7 @@ class QRBitBuffer:
     def get(self, index):
         bufIndex = math.floor(index / 8)
         val = ( (self.buffer[bufIndex] >> (7 - index % 8) ) & 1) == 1
-        print "get ", val
+        print("get ", val)
         return ( (self.buffer[bufIndex] >> (7 - index % 8) ) & 1) == 1
     def put(self, num, length):
         for i in range(length):
