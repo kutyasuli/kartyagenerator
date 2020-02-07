@@ -14,7 +14,7 @@ codeFont = ImageFont.truetype("Ubuntu-B.ttf", 80)
 bkImg = Image.open("kutyasuli-tagkartya.png")
 
 # retrieving QR codes from range with verhoeff check digit appended.
-for i in range(2200,3000):
+for i in range(3000,3200):
     code = str(i)+calc_check_digit(i)
     print("Generating QR code: "+code)
     qr = QRCode(2, QRErrorCorrectLevel.H)
